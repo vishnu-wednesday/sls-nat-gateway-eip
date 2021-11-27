@@ -1,0 +1,34 @@
+Resources:
+  ServerlessNatGateway:
+    Type: AWS::EC2::NatGateway
+    Properties: 
+      AllocationId:
+        Fn::GetAtt:
+         - ElasticIpLambda
+         - AllocationId
+      subnetId:
+        Ref: ServerlessPublicSubnet1
+  ServerlessPublicSubnet1: 
+    DependsOn: 
+      - ServerlessVPC
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: ServerlessVPC
+      CidrBlock: '10.0.2.0/24'
+      AvailabilityZone: ${self:provider.region}a
+      Tags:
+        - Key: Name
+          Value: ServerlessPublicSubnet1
+  ServerlessPrivateSubnet1:
+    DependsOn: 
+      - ServerlessVPC
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: ServerlessVPC
+      CidrBlock: '10.0.1.0/24'
+      AvailabilityZone: ${self:provider.region}a
+      Tags:
+        - Key: Name
+          Value: ServerlessPrivateSubnet1

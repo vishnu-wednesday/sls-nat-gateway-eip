@@ -1,0 +1,23 @@
+Resources:
+  DefaultPublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: ServerlessVPC
+    Tags:
+      - Key: Name
+        Value: DefaultPublicRouteTable
+  DefaultPublicRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: DefaultPublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: ServerlessInternetGateway
+  IGWRouteTableLambdaAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: DefaultPublicRouteTable
+      SubnetId:
+        Ref: ServerlessPublicSubnet1

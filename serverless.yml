@@ -1,0 +1,30 @@
+service:
+  name: ${env:NAME}
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  timeout: 90
+  runtime: nodejs14.x
+  stage: ${env:STAGE}
+  region: ${env:REGION}
+  versionFunctions: false
+package:
+  individually: true
+custom:
+  urlPrefix: "sls"
+  webpack:
+    includeModules: true
+    excludeFiles: ./**/*.test.js
+functions: ${file(./resources/functions.yml)}
+resources:
+  - ${file(./resources/iam.yml)}
+  - ${file(./resources/vpc.yml)}
+  - ${file(./resources/internet-gateway.yml)}
+  - ${file(./resources/nat-gateway.yml)}
+  - ${file(./resources/elastic-ip.yml)}
+  - ${file(./resources/route-private.yml)}
+  - ${file(./resources/route-public.yml)}

@@ -1,0 +1,15 @@
+Resources:
+  ServerlessVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: "10.0.0.0/16"
+      Tags:
+        - Key: 'Name'
+          Value: 'ServerlessVPC'
+  ServerlessVPCGA:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId:
+        Ref: ServerlessVPC
+      InternetGatewayId:
+        Ref: ServerlessInternetGateway

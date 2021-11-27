@@ -1,0 +1,9 @@
+slsNatTutorialFunction:
+  handler: functions/tutorial-function/index.handler
+  role: LambdaRole
+  events:
+    - http:
+        method: POST
+        path: /say-hello
+        cors: true
+  
