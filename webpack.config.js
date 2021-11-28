@@ -25,12 +25,10 @@ module.exports = {
 	resolve: {
 		modules: ['node_modules', './'],
 		alias: {
-            // add any aliases you want here.
-			'@daos': path.resolve(__dirname, 'daos/'),
+			// add any aliases you want here.
 			'@utils': path.resolve(__dirname, 'utils/'),
 			'@services': path.resolve(__dirname, 'services/'),
 			'@mocks': path.resolve(__dirname, '__mocks__/'),
-			'@models': path.resolve(__dirname, 'models/'),
 		},
 		extensions: ['.js'],
 		mainFields: ['browser', 'jsnext:main', 'main'],

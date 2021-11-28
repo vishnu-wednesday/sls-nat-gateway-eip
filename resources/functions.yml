@@ -3,7 +3,7 @@ slsNatTutorialFunction:
   role: LambdaRole
   events:
     - http:
-        method: POST
+        method: GET
         path: /say-hello
         cors: true
   

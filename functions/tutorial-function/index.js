@@ -1,15 +1,14 @@
-const { apiSuccess, apiFailure } = require('../../utils');
+import { apiSuccess, apiFailure } from '@utils';
+import axios from 'axios';
 
 exports.handler = async (event, context, callback) => {
 	console.log(JSON.stringify(event));
 	try {
-		const res = await fetch(
-			'https://api.github.com/repos/facebook/react/issues',
-			{
-				method: 'GET',
-			}
+		const response = await axios.get(
+			'https://api.github.com/search/repositories?q=react&limit=50'
 		);
-		const data = await res.json();
+		const data = response.data;
+		console.log(data);
 		return apiSuccess(callback, data);
 	} catch (error) {
 		return apiFailure(callback, error);

@@ -1,5 +1,4 @@
 import 'core-js';
-import AWS from 'aws-sdk';
 import dotEnv from 'dotenv';
 import 'regenerator-runtime/runtime';
 
